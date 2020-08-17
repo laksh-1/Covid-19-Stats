@@ -10,6 +10,7 @@ let myApiKey  = config.API_KEY;
 Chart.defaults.global.defaultFontFamily = 'Lato';
 
 searchButton.addEventListener('click', () => {
+    console.log(process.env);
     let selectedCountry = country.value.toLowerCase();
     if (date.value == "") {
         let today = new Date();
