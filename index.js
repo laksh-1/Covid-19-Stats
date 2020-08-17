@@ -6,27 +6,25 @@ let searchResult = document.getElementById('searchResult');
 let graph = document.getElementById('graph').getContext('2d');
 let date = document.getElementById('date');
 let chartType = document.getElementById('chartType');
+let myApiKey  = config.API_KEY;
 Chart.defaults.global.defaultFontFamily = 'Lato';
 
 searchButton.addEventListener('click', () => {
     let selectedCountry = country.value.toLowerCase();
-    console.log(selectedCountry);
     if (date.value == "") {
         let today = new Date();
         date.value = `${today.toISOString().split('T')[0]}`;
-        console.log(today.toISOString().split('T')[0]);
     }
     fetch(`https://covid-193.p.rapidapi.com/history?country=${selectedCountry}&day=${date.value}`, {
         "method": "GET",
         "headers": {
             "x-rapidapi-host": "covid-193.p.rapidapi.com",
-            "x-rapidapi-key": "233c9b2773mshfe80f6b6ef577c4p13f98ejsn7e3422935c64"
+            "x-rapidapi-key": myApiKey
         }
     })
         .then(response => {
             return response.json();
         }).then(data => {
-            console.log(data);
             let html = `
             <div class="card-deck">
             <div class="card my-3 text-center bg-danger text-light">
